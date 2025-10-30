@@ -27,10 +27,10 @@ jobs:
         run: npx nx format:check --all
 
       - name: Lint
-        run: npm run lint
+        run: npx nx lint file-upload
 
       - name: Test (coverage)
-        run: npm run test -- --configuration=ci
+        run: npx nx test file-upload --configuration=ci
 
       - name: Build
-        run: npm run build
+        run: npx nx build file-upload
