@@ -12,13 +12,18 @@
       "options": {
         "outputPath": "dist/apps/file-upload",
         "browser": "apps/file-upload/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["zone.js", "@angular/localize/init"],
         "tsConfig": "apps/file-upload/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/file-upload/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/file-upload/src/assets",
+            "output": "assets"
           }
         ],
         "styles": ["apps/file-upload/src/styles.scss"]
@@ -28,7 +33,7 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
+              "maximumWarning": "600kb",
               "maximumError": "1mb"
             },
             {
@@ -84,6 +89,55 @@
         "buildTarget": "file-upload:build",
         "staticFilePath": "dist/apps/file-upload/browser",
         "spa": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/file-upload/.storybook",
+        "browserTarget": "file-upload:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/file-upload",
+        "configDir": "apps/file-upload/.storybook",
+        "browserTarget": "file-upload:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c apps/file-upload/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "file-upload:build-storybook",
+        "staticFilePath": "dist/storybook/file-upload",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "file-upload:build-storybook:ci"
+        }
       }
     }
   }

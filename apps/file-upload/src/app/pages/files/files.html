@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="action-panel">
+    <span class="file-count">{{ (count$ | async) ?? 0 }} files</span>
+    <button class="upload-btn" (click)="openUpload()">
+      <span class="upload-btn-text">Upload file</span>
+    </button>
+  </div>
+  <app-file-table [rows]="(paginatedRows$ | async) ?? []"></app-file-table>
+  <div class="pagination-container">
+    <ngb-pagination
+      [(page)]="currentPage"
+      [pageSize]="pageSize"
+      [collectionSize]="collectionSize"
+      [maxSize]="5"
+      [rotate]="true"
+      [boundaryLinks]="false"
+      [directionLinks]="true"
+      class="mb-0"
+    >
+      <ng-template ngbPaginationPrevious>
+        <img
+          src="assets/icons/icon-chevron-left.svg"
+          alt="Previous"
+          width="16"
+          height="16"
+        />
+      </ng-template>
+      <ng-template ngbPaginationNext>
+        <img
+          src="assets/icons/icon-chevron-right.svg"
+          alt="Next"
+          width="16"
+          height="16"
+        />
+      </ng-template>
+    </ngb-pagination>
+  </div>
+</div>

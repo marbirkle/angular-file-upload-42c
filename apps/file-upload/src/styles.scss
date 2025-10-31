@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles and theme variables */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  /* Brand */
+  --brand-primary: #378af5;
+  --brand-primary-600: #2a6dd1;
+  --brand-primary-100: #e6f0ff;
+
+  /* Semantic */
+  --success-600: #1f9d55;
+  --danger-600: #d93025;
+
+  /* Surfaces */
+  --bg-muted: #f5f7fb;
+  --bg-surface: #ffffff;
+  --text-primary: #1e2430;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+html,
+body {
+  min-height: 100%;
+  background-color: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--brand-primary);
+}
+a:hover {
+  color: var(--brand-primary-600);
+}
+
+/* Primary button tune to brand */
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--brand-primary-600);
+  border-color: var(--brand-primary-600);
+}
+
+/* Utility cards/surfaces */
+.surface {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* Pills */
+.badge-valid {
+  background: var(--success-600);
+}
+.badge-invalid {
+  background: var(--danger-600);
+}
+
+/* Modal custom width */
+.modal-dialog {
+  max-width: 623px !important;
+}
+
+.modal-content {
+  width: 623px !important;
+  margin: 0 auto !important;
+}

@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="container welcome-wrapper">
+  <div class="card">
+    <img class="card-img" src="assets/icons/card-img.svg" alt="Welcome" />
+    <div class="card-body">
+      <h1 class="card-title">Welcome!</h1>
+      <div class="card-texts">
+        <p class="card-subtitle">
+          Upload JSON files in a quick and efficient way.
+        </p>
+        <p class="card-counter">
+          <strong>{{ (count$ | async) ?? 0 }}</strong> files uploaded already
+        </p>
+      </div>
+      <button class="card-button" (click)="openUpload()">
+        <span class="card-button-text">Upload file</span>
+      </button>
+    </div>
+  </div>
+</div>
