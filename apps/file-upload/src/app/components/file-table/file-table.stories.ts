@@ -1,21 +1,52 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { FileTable, FileRow } from './file-table';
+import { provideMockStore } from '@ngrx/store/testing';
 
 const meta: Meta<FileTable> = {
   title: 'Components/FileTable',
   component: FileTable,
+  decorators: [
+    story => {
+      const originalStory = story();
+      return {
+        ...originalStory,
+        moduleMetadata: {
+          providers: [
+            provideMockStore({
+              initialState: {
+                files: {
+                  items: [
+                    {
+                      fileName: 'sample-42c-marbirkle.json',
+                      title: 'Sample Valid File',
+                      description: 'This is a valid JSON file',
+                      valid: true,
+                      content: '{"test": "data"}',
+                    },
+                  ],
+                },
+              },
+            }),
+          ],
+        },
+      };
+    },
+  ],
   parameters: {
     layout: 'padded',
   },
   tags: ['autodocs'],
+  argTypes: {
+    rows: {
+      control: 'object',
+      description: 'Array of file rows to display',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<FileTable>;
 
-/**
- * Sample data for stories
- */
 const sampleValidRow: FileRow = {
   fileName: 'valid-42c-marbirkle.json',
   title: 'Valid JSON File',
@@ -30,27 +61,18 @@ const sampleInvalidRow: FileRow = {
   valid: false,
 };
 
-/**
- * Basic display with a single valid file
- */
 export const SingleValidFile: Story = {
   args: {
     rows: [sampleValidRow],
   },
 };
 
-/**
- * Basic display with a single invalid file
- */
 export const SingleInvalidFile: Story = {
   args: {
     rows: [sampleInvalidRow],
   },
 };
 
-/**
- * Mixed valid and invalid files
- */
 export const MultipleFiles: Story = {
   args: {
     rows: [
@@ -66,11 +88,19 @@ export const MultipleFiles: Story = {
   },
 };
 
-/**
- * Empty state
- */
 export const EmptyList: Story = {
   args: {
     rows: [],
+  },
+};
+
+export const ManyFiles: Story = {
+  args: {
+    rows: Array.from({ length: 10 }, (_, i) => ({
+      fileName: `file-${i}-42c-marbirkle.json`,
+      title: `File ${i}`,
+      description: `Description for file ${i}`,
+      valid: i % 2 === 0,
+    })),
   },
 };
