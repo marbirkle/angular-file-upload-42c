@@ -3,15 +3,19 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "nx build file-upload",
+    "build": "nx build file-upload --configuration=production",
+    "build:dev": "nx build file-upload --configuration=development",
     "serve": "nx serve file-upload",
     "test": "nx test file-upload",
+    "test:ci": "nx test file-upload --ci --codeCoverage",
     "lint": "nx lint file-upload",
     "e2e": "echo \"No e2e project configured\" && exit 0",
     "format": "nx format:write",
     "format:check": "nx format:check",
     "storybook": "nx storybook file-upload",
-    "build-storybook": "nx build-storybook file-upload"
+    "build-storybook": "nx build-storybook file-upload",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "private": true,
   "engines": {

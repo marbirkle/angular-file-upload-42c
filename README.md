@@ -183,12 +183,26 @@ angular-file-upload-42c/
 
 ## 🚀 Deployment
 
-The application is deployed on a free-tier platform with:
+The application is deployed on **Vercel** with:
 
-- **Automatic CI/CD**: GitHub Actions pipeline
-- **Production Build**: Optimized Angular build
-- **CDN Distribution**: Fast global content delivery
-- **HTTPS**: Secure connections
+- **Platform**: [Vercel](https://vercel.com) (free tier)
+- **Automatic CI/CD**: Auto-deployment from `main` branch
+- **Production Build**: Optimized Angular build with AOT compilation
+- **CDN Distribution**: Fast global content delivery via Vercel Edge Network
+- **HTTPS**: Automatic SSL certificates
+- **Preview Deployments**: Unique URLs for each Pull Request
+
+### Quick Deploy
+
+```bash
+# Deploy to production
+npm run deploy
+
+# Deploy preview version
+npm run deploy:preview
+```
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 📚 Documentation
 
