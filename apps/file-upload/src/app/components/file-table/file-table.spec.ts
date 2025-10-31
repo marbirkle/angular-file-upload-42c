@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FileTable, FileRow } from './file-table';
 import { Store } from '@ngrx/store';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '@services/modal.service';
 import { provideStore } from '@ngrx/store';
-import { filesReducer } from '../../state/files.reducer';
+import { filesReducer } from '@state/files.reducer';
 
 describe('FileTable', () => {
   let component: FileTable;

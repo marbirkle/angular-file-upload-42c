@@ -7,8 +7,8 @@ import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
-import { filesReducer, filesFeatureKey } from './state/files.reducer';
-import { FilesEffects } from './state/files.effects';
+import { filesReducer, filesFeatureKey } from '@state/files.reducer';
+import { FilesEffects } from '@state/files.effects';
 
 /**
  * Application configuration.

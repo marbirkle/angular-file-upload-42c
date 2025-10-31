@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ModalService } from './modal.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { UploadModal } from '../components/upload-modal/upload-modal';
-import { DeleteModal } from '../components/delete-modal/delete-modal';
+import { UploadModal } from '@components/upload-modal/upload-modal';
+import { DeleteModal } from '@components/delete-modal/delete-modal';
 
 describe('ModalService', () => {
   let service: ModalService;

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
-import { Navbar } from '../../components/navbar/navbar';
+import { Navbar } from '@components/navbar/navbar';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectFilesCount } from '../../state/files.selectors';
-import { ModalService } from '../../services/modal.service';
+import { selectFilesCount } from '@state/files.selectors';
+import { ModalService } from '@services/modal.service';
 
 /**
  * Welcome page component.

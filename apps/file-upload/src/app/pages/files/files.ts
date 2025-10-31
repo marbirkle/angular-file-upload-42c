@@ -1,12 +1,12 @@
 import { Component, inject, signal, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Navbar } from '../../components/navbar/navbar';
-import { FileTable, FileRow } from '../../components/file-table/file-table';
+import { Navbar } from '@components/navbar/navbar';
+import { FileTable, FileRow } from '@components/file-table/file-table';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '@services/modal.service';
 import { Observable, map, combineLatest, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectFileRows, selectFilesCount } from '../../state/files.selectors';
+import { selectFileRows, selectFilesCount } from '@state/files.selectors';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 const DEFAULT_PAGE_SIZE = 10;

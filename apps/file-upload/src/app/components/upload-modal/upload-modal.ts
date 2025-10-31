@@ -4,9 +4,9 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { FilesActions } from '../../state/files.actions';
-import { FileUploadService } from '../../services/file-upload.service';
-import { ValidationService } from '../../services/validation.service';
+import { FilesActions } from '@state/files.actions';
+import { FileUploadService } from '@services/file-upload.service';
+import { ValidationService } from '@services/validation.service';
 
 /**
  * Upload modal component.
