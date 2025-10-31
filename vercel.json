@@ -1,9 +1,9 @@
 {
   "version": 2,
   "name": "angular-file-upload-42c",
-  "buildCommand": "npm run build",
+  "buildCommand": "npx nx build file-upload --configuration=production",
   "outputDirectory": "dist/apps/file-upload/browser",
-  "framework": "angular",
+  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/(.*)",
