@@ -12,12 +12,14 @@ This project is configured for automatic deployment on Vercel.
 ### Automatic Deployment (Recommended)
 
 1. **Connect to Vercel:**
+
    - Go to [vercel.com/import](https://vercel.com/import)
    - Select "Import Git Repository"
    - Choose this repository
    - Vercel will automatically detect the configuration
 
 2. **Configure Build Settings:**
+
    - Framework Preset: `Angular`
    - Build Command: `npm run build`
    - Output Directory: `dist/apps/file-upload/browser`
@@ -52,6 +54,7 @@ If you need environment variables for production:
 ### Configuration Files
 
 - **vercel.json**: Main Vercel configuration
+
   - Defines build settings
   - Sets up routing for SPA
   - Configures security headers
@@ -75,6 +78,7 @@ npm run build
 ### Deployment URL
 
 After deployment, your application will be available at:
+
 - Production: `https://angular-file-upload-42c.vercel.app`
 - Preview deployments: Unique URLs for each PR
 
@@ -91,15 +95,18 @@ After deployment, your application will be available at:
 ### Troubleshooting
 
 **Build fails:**
+
 - Check that all dependencies are in `package.json`
 - Verify Node.js version compatibility
 - Check build logs in Vercel dashboard
 
 **404 on routes:**
+
 - Verify `vercel.json` rewrites configuration
 - Ensure Angular routing is properly configured
 
 **Slow performance:**
+
 - Check asset optimization
 - Verify lazy loading is enabled
 - Review bundle sizes in build output
@@ -107,6 +114,6 @@ After deployment, your application will be available at:
 ### Support
 
 For issues specific to Vercel deployment:
+
 - [Vercel Documentation](https://vercel.com/docs)
 - [Vercel Angular Guide](https://vercel.com/guides/deploying-angular-with-vercel)
-
