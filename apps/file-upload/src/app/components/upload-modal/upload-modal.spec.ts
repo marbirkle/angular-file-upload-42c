@@ -2,10 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UploadModal } from './upload-modal';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
-import { FileUploadService } from '../../services/file-upload.service';
-import { ValidationService } from '../../services/validation.service';
+import { FileUploadService } from '@services/file-upload.service';
+import { ValidationService } from '@services/validation.service';
 import { provideStore } from '@ngrx/store';
-import { filesReducer } from '../../state/files.reducer';
+import { filesReducer } from '@state/files.reducer';
 import { of, throwError } from 'rxjs';
 
 describe('UploadModal', () => {

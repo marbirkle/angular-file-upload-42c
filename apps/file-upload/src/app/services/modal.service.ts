@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UploadModal } from '../components/upload-modal/upload-modal';
-import { DeleteModal } from '../components/delete-modal/delete-modal';
+import { UploadModal } from '@components/upload-modal/upload-modal';
+import { DeleteModal } from '@components/delete-modal/delete-modal';
 
 /**
  * Service responsible for managing modal dialogs.

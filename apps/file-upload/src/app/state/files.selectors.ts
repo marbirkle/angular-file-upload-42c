@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { filesFeatureKey } from './files.reducer';
 import { FilesState } from './files.models';
-import { FileRow } from '../components/file-table/file-table';
+import { FileRow } from '@components/file-table/file-table';
 
 /**
  * Feature selector for the files state slice.
