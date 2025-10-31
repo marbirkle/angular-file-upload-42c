@@ -1,0 +1,113 @@
+<div class="modal-header">
+  <div class="modalContainer">
+    <h5 class="modal-title">Select file</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="cancel()"
+    ></button>
+  </div>
+</div>
+<form class="modal-body" [formGroup]="form" (ngSubmit)="submit()">
+  @if (errorMessage) {
+  <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  }
+
+  <div class="inputs">
+    <div class="input">
+      <div class="content file-input-wrapper">
+        <div class="input-wrapping">
+          <span class="choose-file-text">Choose file</span>
+        </div>
+        <input
+          type="file"
+          accept=".json"
+          id="upload-file"
+          (change)="onFileChange($event)"
+          class="file-input"
+        />
+        <span class="no-file-chosen"
+          >{{ selectedFileName || 'No file chosen' }}</span
+        >
+      </div>
+      @if (form.get('file')?.touched && form.get('file')?.invalid) {
+      <div class="text-danger mt-1">
+        @if (form.get('file')?.errors?.['required']) {<span
+          >File is required.</span
+        >} @if (form.get('file')?.errors?.['invalidExtension']) {<span
+          >File must have .json extension.</span
+        >}
+      </div>
+      }
+    </div>
+
+    <div class="input">
+      <input
+        class="content"
+        id="upload-name"
+        formControlName="name"
+        placeholder="Name"
+      />
+      @if (form.get('name')?.touched && form.get('name')?.invalid) {
+      <div class="text-danger mt-1">
+        @if (form.get('name')?.errors?.['required']) {<span
+          >Name is required.</span
+        >} @if (form.get('name')?.errors?.['pattern']) {<span
+          >Invalid format.</span
+        >}
+      </div>
+      }
+    </div>
+
+    <div class="input">
+      <input
+        class="content"
+        id="upload-description"
+        formControlName="description"
+        placeholder="Description"
+      />
+      @if (form.get('description')?.touched && form.get('description')?.invalid)
+      {
+      <div class="text-danger mt-1">
+        @if (form.get('description')?.errors?.['required']) {<span
+          >Description is required.</span
+        >} @if (form.get('description')?.errors?.['maxlength']) {<span
+          >Too long.</span
+        >} @if (form.get('description')?.errors?.['forbidden']) {<span
+          >Forbidden phrase present.</span
+        >}
+      </div>
+      }
+    </div>
+  </div>
+
+  @if (uploading) {
+  <div class="mt-1">
+    <div
+      class="progress"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="progress"
+    >
+      <div class="progress-bar" [style.width.%]="progress">{{ progress }}%</div>
+    </div>
+  </div>
+  }
+</form>
+<div class="modal-footer">
+  <div class="modalFooterContainer">
+    <button type="button" class="card-button" (click)="cancel()">
+      <span class="button-text">Cancel</span>
+    </button>
+    <button
+      type="button"
+      class="card-button primary"
+      [disabled]="form.invalid || uploading"
+      (click)="submit()"
+    >
+      <span class="button-text">Upload</span>
+    </button>
+  </div>
+</div>

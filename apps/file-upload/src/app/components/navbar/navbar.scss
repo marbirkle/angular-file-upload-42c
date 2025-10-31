@@ -1,0 +1,147 @@
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: #378af5;
+}
+
+/* Navbar principal */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 16px;
+  width: 1440px;
+  height: 56px;
+  background: transparent;
+  border: none !important;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.collapse.navbar-collapse {
+  display: flex;
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+/* Logo brand con icono */
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 0px;
+  gap: 8px;
+  width: 169px;
+  height: 40px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  color: #ffffff;
+}
+
+.navbar-brand span {
+  width: 133px;
+  height: 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Nav items */
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+  width: 154px;
+  height: 40px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  width: 68px;
+  height: 40px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.nav-item:first-child {
+  order: 0;
+}
+
+.nav-item:last-child {
+  order: 1;
+}
+
+.navbar-nav .nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 28px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  color: #ffffff;
+  text-decoration: none;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link:hover {
+  opacity: 0.9;
+}
+
+.nav-link.active {
+  opacity: 1;
+}
+
+/* Toggler */
+.navbar-toggler {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}

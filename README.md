@@ -53,20 +53,38 @@ npm run serve
 ### Development Commands
 
 ```bash
-# Development
-npm run serve          # Start development server (http://localhost:4200)
-npm run build          # Build for production
-npm run test           # Run unit tests
-npm run lint           # Run ESLint
-npm run format         # Format code with Prettier
+# App (file-upload)
+npm run serve            # Start dev server (http://localhost:4200)
+npm run build            # Build production bundle
+npm run test             # Run unit tests
+npm run lint             # Run ESLint
+npm run format           # Format code with Prettier
 
-# Storybook
-npm run storybook      # Start Storybook (http://localhost:4400)
-npm run build-storybook # Build Storybook for production
+# Storybook for components
+npm run storybook        # Start Storybook (http://localhost:4400)
+npm run build-storybook  # Build Storybook
 
-# Nx Commands
-npx nx graph           # Visualize project dependencies
-npx nx show project file-upload # Show project details
+# Nx workspace utilities
+npx nx graph                 # Visualize project dependencies
+npx nx show project file-upload  # Show project details
+```
+
+### Generating Components in Nested Folders (Nx)
+
+Use Nx generators to create standalone components inside a specific folder path (keeps structure professional and consistent):
+
+```bash
+# Welcome page component under app/pages/welcome/
+npx nx g @nx/angular:component apps/file-upload/src/app/pages/welcome/welcome \
+  --standalone --style=scss --skipTests --no-interactive
+
+
+```
+
+Then lazy-load them in `app.routes.ts`:
+
+```
+
 ```
 
 ## 📱 User Interface
@@ -93,6 +111,7 @@ npx nx show project file-upload # Show project details
 
 - **File List**: Display all uploaded files
 - **Validation Status**: Visual indicators for valid/invalid JSON
+  - **Demonstration Rule**: For demonstration purposes, files with the word "API" in their description are marked as "Not valid" to showcase the validation UI
 - **Delete Function**: Confirmation dialog before deletion
 - **Navigation**: Seamless page transitions
 
@@ -116,13 +135,25 @@ angular-file-upload-42c/
 │   └── file-upload/           # Main Angular application
 │       ├── src/
 │       │   ├── app/
-│       │   │   ├── pages/     # Lazy-loaded page modules
-│       │   │   ├── components/ # Standalone components
-│       │   │   ├── store/     # NgRx store configuration
-│       │   │   └── services/  # Business logic services
-│       │   ├── assets/        # Static assets from Figma
-│       │   └── styles/        # Global SCSS styles
-│       └── public/            # Public assets
+│       │   │   ├── pages/                 # Lazy-loaded pages (standalone)
+│       │   │   │   ├── welcome/
+│       │   │   │   │   ├── welcome.ts
+│       │   │   │   │   ├── welcome.html
+│       │   │   │   │   └── welcome.scss
+│       │   │   │   └── files/
+│       │   │   │       ├── files.ts
+│       │   │   │       ├── files.html
+│       │   │   │       └── files.scss
+│       │   │   ├── components/           # Reusable standalone components
+│       │   │   ├── state/                # NgRx store (actions, effects, reducer, selectors)
+│       │   │   ├── services/             # Business logic services
+│       │   │   └── utils/                # Utility functions and tests
+│       │   ├── assets/                   # Static assets (icons, images from Figma)
+│       │   │   └── icons/                # SVG icons
+│       │   ├── styles.scss               # Global styles and Bootstrap imports
+│       │   ├── main.ts                   # Application bootstrap
+│       │   └── index.html                # HTML entry point
+│       └── public/                        # Public static assets (favicon, etc.)
 ├── .github/workflows/         # CI/CD pipelines
 ├── .storybook/               # Storybook configuration
 └── docs/                     # Documentation
@@ -175,6 +206,13 @@ The application is deployed on a free-tier platform with:
 3. **Documentation**: Storybook stories for new components
 4. **Commits**: Conventional Commits format
 5. **CI/CD**: All checks must pass before merging
+
+### Branch Strategy
+
+- **main**: protected, release-only; merges via PR with 1+ approval and green CI
+- **develop**: default working branch; feature branches merge here via PR
+- **feature/\***: short-lived branches per task; rebase onto develop before PR
+- No direct pushes to `main`; enable required status checks and PR reviews
 
 ### Branch Protection
 
