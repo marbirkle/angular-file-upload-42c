@@ -1,7 +1,8 @@
 import { Component, inject, signal, OnDestroy } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Navbar } from '@components/navbar/navbar';
-import { FileTable, FileRow } from '@components/file-table/file-table';
+import { FileTable } from '@components/file-table/file-table';
+import { FileRow } from '@models/file.models';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalService } from '@services/modal.service';
 import { Observable, map, combineLatest, Subscription } from 'rxjs';

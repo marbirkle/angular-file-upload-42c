@@ -7,6 +7,11 @@ import { Store } from '@ngrx/store';
 import { FilesActions } from '@state/files.actions';
 import { FileUploadService } from '@services/file-upload.service';
 import { ValidationService } from '@services/validation.service';
+import {
+  UploadFormValue,
+  UploadModalResult,
+  UploadProgress,
+} from '@models/upload.models';
 
 /**
  * Upload modal component.
@@ -93,13 +98,24 @@ export class UploadModal implements OnDestroy {
       return;
     }
 
-    const { file, name, description } = this.form.value as {
+    const formValue = this.form.value;
+    if (!formValue.file || !formValue.name || !formValue.description) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    // Type assertion is safe here because we validated above
+    const validatedValue = formValue as UploadFormValue & {
       file: File;
       name: string;
       description: string;
     };
 
-    this.startUpload(file, name, description);
+    this.startUpload(
+      validatedValue.file,
+      validatedValue.name,
+      validatedValue.description
+    );
   }
 
   /**
@@ -126,13 +142,15 @@ export class UploadModal implements OnDestroy {
     const uploadSubscription = this.fileUploadService
       .uploadFile(file)
       .subscribe({
-        next: ({ progress, content }) => {
+        next: ({ progress, content }: UploadProgress) => {
           this.progress = progress;
           this.fileContent = content;
         },
-        error: err => {
+        error: (err: unknown) => {
           this.uploading = false;
-          this.errorMessage = err?.message || 'Upload failed.';
+          const errorMessage =
+            err instanceof Error ? err.message : 'Upload failed.';
+          this.errorMessage = errorMessage;
         },
         complete: () => {
           this.uploading = false;
@@ -171,6 +189,11 @@ export class UploadModal implements OnDestroy {
       })
     );
 
-    this.activeModal.close({ fileName: file.name, name, description });
+    const result: UploadModalResult = {
+      fileName: file.name,
+      name,
+      description,
+    };
+    this.activeModal.close(result);
   }
 }

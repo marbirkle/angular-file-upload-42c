@@ -1,18 +1,40 @@
+<!-- Welcome Page Component Template -->
+<!-- Landing page displaying welcome message, file counter, and upload button -->
+
 <app-navbar></app-navbar>
+
 <div class="container welcome-wrapper">
+  <!-- Welcome Card -->
   <div class="card">
-    <img class="card-img" src="assets/icons/card-img.svg" alt="Welcome" />
+    <!-- Card Illustration -->
+    <img
+      class="card-img"
+      src="assets/icons/card-img.svg"
+      alt="Welcome illustration"
+    />
+
+    <!-- Card Content -->
     <div class="card-body">
+      <!-- Main Title -->
       <h1 class="card-title">Welcome!</h1>
+
+      <!-- Card Text Section -->
       <div class="card-texts">
         <p class="card-subtitle">
           Upload JSON files in a quick and efficient way.
         </p>
+        <!-- File Counter Display -->
         <p class="card-counter">
           <strong>{{ (count$ | async) ?? 0 }}</strong> files uploaded already
         </p>
       </div>
-      <button class="card-button" (click)="openUpload()">
+
+      <!-- Upload Button -->
+      <button
+        class="card-button"
+        (click)="openUpload()"
+        aria-label="Upload file"
+      >
         <span class="card-button-text">Upload file</span>
       </button>
     </div>
