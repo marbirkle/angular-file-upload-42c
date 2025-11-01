@@ -1,8 +1,23 @@
+/* ==========================================================================
+   Delete Modal Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Ensures the component displays as a block element
+ */
 :host {
   display: block;
 }
 
-/* Modal Header */
+/* ==========================================================================
+   Modal Header Styles
+   ========================================================================== */
+
+/**
+ * Modal header section
+ * Contains modal title and close button
+ */
 .modal-header {
   box-sizing: border-box;
   display: flex;
@@ -18,6 +33,10 @@
   margin: -1px 0;
 }
 
+/**
+ * Modal header container
+ * Flex layout for title and close button alignment
+ */
 .modalContainer {
   display: flex;
   flex-direction: row;
@@ -28,6 +47,10 @@
   width: 100%;
 }
 
+/**
+ * Modal title styling
+ * Bold heading for confirmation dialog
+ */
 .modal-title {
   width: auto;
   height: 24px;
@@ -45,6 +68,10 @@
   flex-grow: 0;
 }
 
+/**
+ * Close button
+ * Bootstrap-style close icon button
+ */
 .btn-close {
   width: 16px;
   height: 16px;
@@ -52,7 +79,14 @@
   flex-grow: 0;
 }
 
-/* Modal Body */
+/* ==========================================================================
+   Modal Body Styles
+   ========================================================================== */
+
+/**
+ * Modal body section
+ * Contains confirmation message
+ */
 .modal-body {
   box-sizing: border-box;
   display: flex;
@@ -67,6 +101,10 @@
   margin: -1px 0;
 }
 
+/**
+ * Confirmation message text
+ * Displays the filename to be deleted
+ */
 .modal-text {
   margin: 0;
   width: 575px;
@@ -83,7 +121,14 @@
   flex-grow: 1;
 }
 
-/* Modal Footer */
+/* ==========================================================================
+   Modal Footer Styles
+   ========================================================================== */
+
+/**
+ * Modal footer section
+ * Contains action buttons (Cancel and Confirm)
+ */
 .modal-footer {
   box-sizing: border-box;
   display: flex;
@@ -98,6 +143,10 @@
   flex: none;
 }
 
+/**
+ * Footer button container
+ * Right-aligned button layout
+ */
 .modalFooterContainer {
   display: flex;
   flex-direction: row;
@@ -108,6 +157,10 @@
   width: 100%;
 }
 
+/**
+ * Base button styling
+ * Shared styles for Cancel and Confirm buttons
+ */
 .card-button {
   box-sizing: border-box;
   display: flex;
@@ -124,24 +177,44 @@
   border-radius: 4px;
 }
 
+/**
+ * Cancel button variant
+ * Secondary action button
+ */
 .cancel-btn {
   background: #ffffff;
   border: 1px solid #737373;
 }
 
+/**
+ * Confirm button variant
+ * Primary action button for deletion
+ */
 .confirm-btn {
   background: #378af5;
   border: none;
 }
 
+/**
+ * Confirm button hover state
+ * Darker shade on hover
+ */
 .confirm-btn:hover {
   background: #2a6dd1;
 }
 
+/**
+ * Confirm button active state
+ * Darkest shade when clicked
+ */
 .confirm-btn:active {
   background: #1e5bb9;
 }
 
+/**
+ * Button text styling
+ * Text inside action buttons
+ */
 .button-text {
   margin: 0 auto;
   height: 19px;
@@ -157,10 +230,18 @@
   color: #3d3d3d;
 }
 
+/**
+ * Cancel button text
+ * Dark text on cancel button
+ */
 .cancel-btn .button-text {
   width: 55px;
 }
 
+/**
+ * Confirm button text
+ * White text on confirm button
+ */
 .confirm-btn .button-text {
   width: 64px;
   color: #ffffff;

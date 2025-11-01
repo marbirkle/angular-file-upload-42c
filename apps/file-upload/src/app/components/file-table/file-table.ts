@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { FilesActions } from '@state/files.actions';
 import { ModalService } from '@services/modal.service';
-
-export interface FileRow {
-  fileName: string;
-  title: string;
-  description: string;
-  valid: boolean;
-}
+import { FileRow } from '@models/file.models';
 
 /**
  * File table component.

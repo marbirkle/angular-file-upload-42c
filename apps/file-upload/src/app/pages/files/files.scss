@@ -1,3 +1,11 @@
+/* ==========================================================================
+   Files Page Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Full viewport height with white background
+ */
 :host {
   display: flex;
   flex-direction: column;
@@ -5,7 +13,14 @@
   background: #ffffff;
 }
 
-/* page content */
+/* ==========================================================================
+   Layout Styles
+   ========================================================================== */
+
+/**
+ * Page content container
+ * Main layout wrapper with max-width constraint
+ */
 .container {
   flex: 1;
   display: flex;
@@ -19,7 +34,14 @@
   background: #ffffff;
 }
 
-/* action panel */
+/* ==========================================================================
+   Action Panel Styles
+   ========================================================================== */
+
+/**
+ * Action panel container
+ * Header section with file count and upload button
+ */
 .action-panel {
   display: flex;
   flex-direction: row;
@@ -34,7 +56,10 @@
   flex-grow: 0;
 }
 
-/* 5 files */
+/**
+ * File count display
+ * Shows total number of uploaded files
+ */
 .file-count {
   margin: 0;
   width: auto;
@@ -53,7 +78,14 @@
   flex-grow: 0;
 }
 
-/* button */
+/* ==========================================================================
+   Upload Button Styles
+   ========================================================================== */
+
+/**
+ * Upload file button
+ * Primary action button to open upload modal
+ */
 .upload-btn {
   display: flex;
   flex-direction: row;
@@ -73,6 +105,10 @@
   flex-grow: 0;
 }
 
+/**
+ * Upload button text
+ * Label inside the upload button
+ */
 .upload-btn-text {
   width: auto;
   height: 16px;
@@ -88,15 +124,30 @@
   flex-grow: 0;
 }
 
+/**
+ * Upload button hover state
+ * Darker shade when hovering
+ */
 .upload-btn:hover {
   background: #2a6dd1;
 }
 
+/**
+ * Upload button active state
+ * Darkest shade when clicked
+ */
 .upload-btn:active {
   background: #1e5bb9;
 }
 
-/* Pagination */
+/* ==========================================================================
+   Pagination Styles
+   ========================================================================== */
+
+/**
+ * Pagination container
+ * Wrapper for Bootstrap pagination component
+ */
 .pagination-container {
   margin-top: auto;
   padding: 0;
@@ -108,6 +159,10 @@
   margin-right: auto;
 }
 
+/**
+ * Bootstrap pagination overrides
+ * Custom styling to match design specifications
+ */
 :host ::ng-deep .pagination {
   margin: 0 !important;
   display: flex;
@@ -119,11 +174,19 @@
   flex: none;
   flex-grow: 0;
 
+  /**
+   * Pagination item
+   * Individual page number or control
+   */
   .page-item {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
+    /**
+     * Page link styling
+     * Clickable page number or navigation control
+     */
     .page-link {
       box-sizing: border-box;
       display: flex;
@@ -145,16 +208,28 @@
       margin: 0 -1px;
       cursor: pointer;
 
+      /**
+       * Page link hover state
+       * Light background on hover
+       */
       &:hover:not(:disabled) {
         background-color: #e9ecef;
         border-color: #dee2e6;
         color: #3d3d3d;
       }
 
+      /**
+       * Disabled page link
+       * Non-clickable state
+       */
       &:disabled {
         cursor: not-allowed;
       }
 
+      /**
+       * Icon styling
+       * SVG and image icons in pagination controls
+       */
       svg,
       img {
         width: 16px;
@@ -166,12 +241,20 @@
       }
     }
 
+    /**
+     * Active page item
+     * Current page highlighting
+     */
     &.active .page-link {
       background: #378af5;
       border-color: #378af5;
       color: #ffffff;
     }
 
+    /**
+     * Disabled page item
+     * Inactive navigation controls
+     */
     &.disabled .page-link {
       background: #ffffff;
       border-color: #dee2e6;
@@ -185,20 +268,40 @@
       }
     }
 
+    /**
+     * First page item
+     * Rounded left corners
+     */
     &:first-child .page-link {
       border-radius: 4px 0 0 4px;
     }
 
+    /**
+     * Last page item
+     * Rounded right corners
+     */
     &:last-child .page-link {
       border-radius: 0 4px 4px 0;
     }
   }
 }
 
+/* ==========================================================================
+   Utility Styles
+   ========================================================================== */
+
+/**
+ * Toolbar container
+ * Utility class for toolbar spacing
+ */
 .toolbar {
   padding: 8px 0;
 }
 
+/**
+ * List group item with surface styling
+ * Custom card-like styling for list items
+ */
 .list-group .list-group-item.surface {
   border: 1px solid var(--border-color);
   border-radius: 10px;

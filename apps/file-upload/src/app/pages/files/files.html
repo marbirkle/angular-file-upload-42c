@@ -1,12 +1,21 @@
+<!-- Files Page Component Template -->
+<!-- Displays paginated list of uploaded files with upload button and pagination -->
+
 <app-navbar></app-navbar>
+
 <div class="container">
+  <!-- Action Panel: File Count and Upload Button -->
   <div class="action-panel">
     <span class="file-count">{{ (count$ | async) ?? 0 }} files</span>
-    <button class="upload-btn" (click)="openUpload()">
+    <button class="upload-btn" (click)="openUpload()" aria-label="Upload file">
       <span class="upload-btn-text">Upload file</span>
     </button>
   </div>
+
+  <!-- File Table Component -->
   <app-file-table [rows]="(paginatedRows$ | async) ?? []"></app-file-table>
+
+  <!-- Pagination Component -->
   <div class="pagination-container">
     <ngb-pagination
       [(page)]="currentPage"
@@ -17,19 +26,22 @@
       [boundaryLinks]="false"
       [directionLinks]="true"
       class="mb-0"
+      aria-label="File pagination"
     >
+      <!-- Previous Page Icon Template -->
       <ng-template ngbPaginationPrevious>
         <img
           src="assets/icons/icon-chevron-left.svg"
-          alt="Previous"
+          alt="Previous page"
           width="16"
           height="16"
         />
       </ng-template>
+      <!-- Next Page Icon Template -->
       <ng-template ngbPaginationNext>
         <img
           src="assets/icons/icon-chevron-right.svg"
-          alt="Next"
+          alt="Next page"
           width="16"
           height="16"
         />
