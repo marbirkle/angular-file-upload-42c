@@ -2,9 +2,10 @@ import { Component, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { FilesActions } from '@state/files.actions';
+import { selectFileExists } from '@state/files.selectors';
 import { FileUploadService } from '@services/file-upload.service';
 import { ValidationService } from '@services/validation.service';
 import {
@@ -90,7 +91,7 @@ export class UploadModal implements OnDestroy {
 
   /**
    * Handles form submission.
-   * Validates form and initiates file upload if valid.
+   * Validates form, checks for duplicate files, and initiates file upload if valid.
    */
   submit(): void {
     if (this.form.invalid) {
@@ -111,11 +112,26 @@ export class UploadModal implements OnDestroy {
       description: string;
     };
 
-    this.startUpload(
-      validatedValue.file,
-      validatedValue.name,
-      validatedValue.description
-    );
+    // Check if file name already exists
+    const duplicateCheckSubscription = this.store
+      .select(selectFileExists(validatedValue.file.name))
+      .pipe(take(1))
+      .subscribe(fileExists => {
+        if (fileExists) {
+          this.errorMessage = `A file with the name "${validatedValue.file.name}" already exists. Please choose a different file.`;
+          this.form.get('file')?.setErrors({ duplicate: true });
+          this.form.get('file')?.markAsTouched();
+          return;
+        }
+
+        this.startUpload(
+          validatedValue.file,
+          validatedValue.name,
+          validatedValue.description
+        );
+      });
+
+    this.subscriptions.add(duplicateCheckSubscription);
   }
 
   /**
@@ -151,6 +167,7 @@ export class UploadModal implements OnDestroy {
           const errorMessage =
             err instanceof Error ? err.message : 'Upload failed.';
           this.errorMessage = errorMessage;
+          this.form.get('file')?.setErrors({ uploadError: true });
         },
         complete: () => {
           this.uploading = false;
