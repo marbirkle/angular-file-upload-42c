@@ -48,6 +48,8 @@
         <span>File is required.</span>
         } @if (form.get('file')?.errors?.['invalidExtension']) {
         <span>File must have .json extension.</span>
+        } @if (form.get('file')?.errors?.['duplicate']) {
+        <span>A file with this name already exists.</span>
         }
       </div>
       }

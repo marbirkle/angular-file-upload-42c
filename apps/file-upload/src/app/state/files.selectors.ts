@@ -36,3 +36,14 @@ export const selectFilesCount = createSelector(
   selectStoredFiles,
   items => items.length
 );
+
+/**
+ * Selector that checks if a file name already exists.
+ * Returns true if the fileName exists in the store.
+ *
+ * @param fileName - The file name to check
+ */
+export const selectFileExists = (fileName: string) =>
+  createSelector(selectStoredFiles, items =>
+    items.some(file => file.fileName === fileName)
+  );
