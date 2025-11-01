@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { FilesActions } from './files.actions';
-import { FilesState, initialFilesState } from './files.models';
+import { FilesState, initialFilesState } from '@models/file.models';
 
 export const filesFeatureKey = 'files';
 

@@ -1,8 +1,23 @@
+/* ==========================================================================
+   Upload Modal Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Ensures the component displays as a block element
+ */
 :host {
   display: block;
 }
 
-/* Modal Header */
+/* ==========================================================================
+   Modal Header Styles
+   ========================================================================== */
+
+/**
+ * Modal header section
+ * Contains modal title and close button
+ */
 .modal-header {
   box-sizing: border-box;
   display: flex;
@@ -18,6 +33,10 @@
   margin: -1px 0;
 }
 
+/**
+ * Modal header container
+ * Flex layout for title and close button alignment
+ */
 .modalContainer {
   display: flex;
   flex-direction: row;
@@ -28,6 +47,10 @@
   width: 100%;
 }
 
+/**
+ * Modal title styling
+ * Bold heading for modal dialog
+ */
 .modal-title {
   width: auto;
   height: 24px;
@@ -45,6 +68,10 @@
   flex-grow: 0;
 }
 
+/**
+ * Close button
+ * Bootstrap-style close icon button
+ */
 .btn-close {
   width: 16px;
   height: 16px;
@@ -52,7 +79,14 @@
   flex-grow: 0;
 }
 
-/* Modal Body */
+/* ==========================================================================
+   Modal Body Styles
+   ========================================================================== */
+
+/**
+ * Modal body section
+ * Contains form inputs and validation messages
+ */
 .modal-body {
   box-sizing: border-box;
   display: flex;
@@ -66,6 +100,10 @@
   margin: -1px 0;
 }
 
+/**
+ * Inputs container
+ * Vertical layout for form inputs
+ */
 .inputs {
   display: flex;
   flex-direction: column;
@@ -76,6 +114,10 @@
   width: 100%;
 }
 
+/**
+ * Individual input wrapper
+ * Contains input field and validation messages
+ */
 .input {
   display: flex;
   flex-direction: column;
@@ -86,6 +128,10 @@
   min-height: 40px;
 }
 
+/**
+ * Base input content styling
+ * Shared styles for all input fields
+ */
 .content {
   box-sizing: border-box;
   display: flex;
@@ -111,7 +157,14 @@
   }
 }
 
-/* File input special handling */
+/* ==========================================================================
+   File Input Styles
+   ========================================================================== */
+
+/**
+ * File input wrapper
+ * Custom styled file input with button overlay
+ */
 .file-input-wrapper {
   padding: 0 12px 0 0;
   display: flex;
@@ -121,6 +174,10 @@
   position: relative;
 }
 
+/**
+ * File input button wrapper
+ * Static button that triggers file selection
+ */
 .input-wrapping {
   box-sizing: border-box;
   display: flex;
@@ -137,6 +194,10 @@
   pointer-events: none;
 }
 
+/**
+ * Choose file button text
+ * Label for file selection button
+ */
 .choose-file-text {
   width: 86px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -150,6 +211,10 @@
   flex-grow: 0;
 }
 
+/**
+ * Hidden file input
+ * Overlayed on the button for file selection
+ */
 .file-input {
   position: absolute;
   opacity: 0;
@@ -159,6 +224,10 @@
   pointer-events: all;
 }
 
+/**
+ * Selected filename display
+ * Shows the name of the selected file or placeholder text
+ */
 .no-file-chosen {
   width: auto;
   height: 20px;
@@ -172,7 +241,14 @@
   flex: 1;
 }
 
-/* Modal Footer */
+/* ==========================================================================
+   Modal Footer Styles
+   ========================================================================== */
+
+/**
+ * Modal footer section
+ * Contains action buttons (Cancel and Upload)
+ */
 .modal-footer {
   box-sizing: border-box;
   display: flex;
@@ -188,6 +264,10 @@
   margin: -1px 0;
 }
 
+/**
+ * Footer button container
+ * Right-aligned button layout
+ */
 .modalFooterContainer {
   display: flex;
   flex-direction: row;
@@ -198,6 +278,10 @@
   width: 100%;
 }
 
+/**
+ * Base button styling
+ * Shared styles for Cancel and Upload buttons
+ */
 .card-button {
   box-sizing: border-box;
   display: flex;
@@ -215,17 +299,29 @@
   flex: none;
   flex-grow: 0;
 
+  /**
+   * Primary button variant
+   * Used for the main action (Upload)
+   */
   &.primary {
     background: #378af5;
     border: none;
   }
 
+  /**
+   * Disabled button state
+   * Applied when form is invalid or upload in progress
+   */
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
 }
 
+/**
+ * Button text styling
+ * Text inside action buttons
+ */
 .button-text {
   margin: 0 auto;
   width: auto;
@@ -240,29 +336,50 @@
   flex: none;
   flex-grow: 0;
 
+  /**
+   * Primary button text
+   * White text on primary button
+   */
   .primary & {
     color: #ffffff;
   }
 
+  /**
+   * Secondary button text
+   * Dark text on secondary button
+   */
   .card-button:not(.primary) & {
     color: #3d3d3d;
   }
 }
 
-/* Error messages */
+/* ==========================================================================
+   Validation & Feedback Styles
+   ========================================================================== */
+
+/**
+ * Error message text
+ * Displays validation errors below inputs
+ */
 .text-danger {
   color: #dc3545;
   font-size: 14px;
   margin-top: 4px;
 }
 
-/* Alert */
+/**
+ * Alert message container
+ * Displays upload errors or warnings
+ */
 .alert {
   width: 100%;
   margin-bottom: 16px;
 }
 
-/* Progress bar */
+/**
+ * Progress bar container
+ * Shows upload progress percentage
+ */
 .progress {
   width: 100%;
   height: 20px;

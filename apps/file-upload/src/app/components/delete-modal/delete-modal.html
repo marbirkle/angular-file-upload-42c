@@ -1,28 +1,39 @@
+<!-- Delete Confirmation Modal Component Template -->
+<!-- Modal dialog for confirming file deletion -->
+
+<!-- Modal Header -->
 <div class="modal-header">
   <div class="modalContainer">
     <h5 class="modal-title">Confirm file deleting</h5>
     <button
       type="button"
       class="btn-close"
-      aria-label="Close"
+      aria-label="Close modal"
       (click)="dismiss()"
     ></button>
   </div>
 </div>
+
+<!-- Modal Body: Confirmation Message -->
 <div class="modal-body">
   <p class="modal-text">
     Are you sure you want to delete the file «{{ fileName }}»?
   </p>
 </div>
+
+<!-- Modal Footer: Action Buttons -->
 <div class="modal-footer">
   <div class="modalFooterContainer">
+    <!-- Cancel Button -->
     <button type="button" class="card-button cancel-btn" (click)="dismiss()">
       <span class="button-text">Cancel</span>
     </button>
+    <!-- Confirm Delete Button -->
     <button
       type="button"
       class="card-button primary confirm-btn"
       (click)="confirm()"
+      aria-label="Confirm deletion"
     >
       <span class="button-text">Confirm</span>
     </button>

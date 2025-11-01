@@ -1,4 +1,8 @@
+<!-- File Table Component Template -->
+<!-- Displays a responsive table with file information and delete functionality -->
+
 <table class="table-custom">
+  <!-- Table Header -->
   <thead>
     <tr>
       <th scope="col" class="col-file">File</th>
@@ -8,29 +12,39 @@
       <th scope="col" class="col-remove"></th>
     </tr>
   </thead>
+
+  <!-- Table Body -->
   <tbody>
+    <!-- File Row - Iterates through rows with trackBy for performance -->
     <tr
       *ngFor="let r of rows; trackBy: trackByName"
       [class.invalid-row]="!r.valid"
     >
+      <!-- File Column: Displays file icon and filename -->
       <td class="col-file">
         <div class="file">
           <img
             class="icon-fileuploaded"
             src="assets/icons/icon_fileuploaded.svg"
-            alt="File"
+            alt="File icon"
             width="16"
             height="16"
           />
           <span class="file-name">{{ r.fileName }}</span>
         </div>
       </td>
+
+      <!-- Name Column: User-provided title -->
       <td class="col-name">
         <div class="name">{{ r.title }}</div>
       </td>
+
+      <!-- Description Column: User-provided description -->
       <td class="col-description">
         <div class="description">{{ r.description }}</div>
       </td>
+
+      <!-- Validation Status Column: Badge indicating file validity -->
       <td class="col-valid">
         <div class="badge-item">
           <span
@@ -41,12 +55,19 @@
           </span>
         </div>
       </td>
+
+      <!-- Actions Column: Delete button -->
       <td class="col-remove">
-        <button class="btn-icon" (click)="onDelete(r)" aria-label="Delete file">
+        <button
+          class="btn-icon"
+          (click)="onDelete(r)"
+          aria-label="Delete file {{ r.fileName }}"
+          type="button"
+        >
           <img
             class="icon-remove"
             src="assets/icons/remove.svg"
-            alt="Remove"
+            alt="Remove file"
             width="16"
             height="16"
           />

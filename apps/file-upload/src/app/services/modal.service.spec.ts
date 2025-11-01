@@ -1,3 +1,10 @@
+/**
+ * Unit tests for ModalService.
+ *
+ * Tests modal dialog management including upload and delete modal
+ * configuration, opening, and result handling.
+ */
+
 import { TestBed } from '@angular/core/testing';
 import { ModalService } from './modal.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -8,6 +15,10 @@ describe('ModalService', () => {
   let service: ModalService;
   let mockNgbModal: NgbModal;
 
+  /**
+   * Setup test environment before each test.
+   * Mocks NgbModal and injects ModalService.
+   */
   beforeEach(() => {
     mockNgbModal = {
       open: jest.fn(),
@@ -19,18 +30,25 @@ describe('ModalService', () => {
     service = TestBed.inject(ModalService);
   });
 
+  /**
+   * Service instantiation test.
+   * Verifies that the service can be created successfully.
+   */
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
+  /**
+   * Upload modal tests.
+   * Verifies correct modal configuration and result promise handling.
+   */
   describe('openUploadModal', () => {
     it('should open upload modal with correct configuration', () => {
       const mockModalRef = {
         result: Promise.resolve(),
-      };
-      jest
-        .spyOn(mockNgbModal, 'open')
-        .mockReturnValue(mockModalRef as unknown as NgbModalRef);
+      } as unknown as NgbModalRef;
+
+      jest.spyOn(mockNgbModal, 'open').mockReturnValue(mockModalRef);
 
       service.openUploadModal();
 
@@ -40,51 +58,56 @@ describe('ModalService', () => {
       });
     });
 
-    it('should return modal result promise', () => {
+    it('should return modal result promise for further handling', () => {
+      const expectedResult = Promise.resolve('success');
       const mockModalRef = {
-        result: Promise.resolve('success'),
-      };
-      jest
-        .spyOn(mockNgbModal, 'open')
-        .mockReturnValue(mockModalRef as unknown as NgbModalRef);
+        result: expectedResult,
+      } as unknown as NgbModalRef;
+
+      jest.spyOn(mockNgbModal, 'open').mockReturnValue(mockModalRef);
 
       const result = service.openUploadModal();
 
-      expect(result).toBe(mockModalRef.result);
+      expect(result).toBe(expectedResult);
     });
   });
 
+  /**
+   * Delete modal tests.
+   * Verifies correct modal configuration, filename assignment, and result handling.
+   */
   describe('openDeleteModal', () => {
-    it('should open delete modal with correct configuration', () => {
+    it('should open delete modal with correct configuration and set filename', () => {
+      const fileName = 'test.json';
       const mockModalRef = {
         result: Promise.resolve(),
         componentInstance: { fileName: '' },
-      };
-      jest
-        .spyOn(mockNgbModal, 'open')
-        .mockReturnValue(mockModalRef as unknown as NgbModalRef);
+      } as unknown as NgbModalRef;
 
-      service.openDeleteModal('test.json');
+      jest.spyOn(mockNgbModal, 'open').mockReturnValue(mockModalRef);
+
+      service.openDeleteModal(fileName);
 
       expect(mockNgbModal.open).toHaveBeenCalledWith(DeleteModal, {
         centered: true,
         backdrop: 'static',
       });
-      expect(mockModalRef.componentInstance.fileName).toBe('test.json');
+      expect(mockModalRef.componentInstance.fileName).toBe(fileName);
     });
 
-    it('should return modal result promise', () => {
+    it('should return modal result promise for further handling', () => {
+      const fileName = 'test.json';
+      const expectedResult = Promise.resolve('success');
       const mockModalRef = {
-        result: Promise.resolve('success'),
+        result: expectedResult,
         componentInstance: { fileName: '' },
-      };
-      jest
-        .spyOn(mockNgbModal, 'open')
-        .mockReturnValue(mockModalRef as unknown as NgbModalRef);
+      } as unknown as NgbModalRef;
 
-      const result = service.openDeleteModal('test.json');
+      jest.spyOn(mockNgbModal, 'open').mockReturnValue(mockModalRef);
 
-      expect(result).toBe(mockModalRef.result);
+      const result = service.openDeleteModal(fileName);
+
+      expect(result).toBe(expectedResult);
     });
   });
 });
