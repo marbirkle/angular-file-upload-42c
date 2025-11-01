@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
+import { UploadProgress } from '@models/upload.models';
 
 const UPLOAD_PROGRESS_INTERVAL_MS = 80;
 const UPLOAD_PROGRESS_INCREMENT = 10;
@@ -19,8 +20,8 @@ export class FileUploadService {
    * @param file - The JSON file to upload
    * @returns Observable that emits upload progress (0-100) and completes on success, or errors on failure
    */
-  uploadFile(file: File): Observable<{ progress: number; content: string }> {
-    return new Observable<{ progress: number; content: string }>(subscriber => {
+  uploadFile(file: File): Observable<UploadProgress> {
+    return new Observable<UploadProgress>(subscriber => {
       const readFilePromise = file.text();
 
       readFilePromise
@@ -51,7 +52,7 @@ export class FileUploadService {
    * @param content - The file content to include in final emission
    */
   private simulateProgress(
-    subscriber: Subscriber<{ progress: number; content: string }>,
+    subscriber: Subscriber<UploadProgress>,
     content: string
   ): void {
     let progress = 0;

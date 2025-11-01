@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { FileTable, FileRow } from './file-table';
+import { FileTable } from './file-table';
+import { FileRow } from '@models/file.models';
 import { provideMockStore } from '@ngrx/store/testing';
 
 const meta: Meta<FileTable> = {

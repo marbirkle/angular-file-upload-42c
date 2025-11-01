@@ -1,3 +1,11 @@
+/* ==========================================================================
+   Navbar Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Centers the navbar and sets the background color
+ */
 :host {
   display: flex;
   width: 100%;
@@ -5,7 +13,10 @@
   background-color: #378af5;
 }
 
-/* Navbar principal */
+/**
+ * Main navbar container
+ * Defines the maximum width and basic layout structure
+ */
 .navbar {
   display: flex;
   flex-direction: row;
@@ -13,15 +24,17 @@
   align-items: center;
   padding: 8px 16px;
   gap: 16px;
-  width: 1440px;
-  height: 56px;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 56px;
   background: transparent;
   border: none !important;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
+/**
+ * Inner navbar container
+ * Handles the flex layout for brand, toggler, and menu items
+ */
 .navbar-container {
   display: flex;
   flex-direction: row;
@@ -31,101 +44,92 @@
   margin: 0 auto;
 }
 
-.collapse.navbar-collapse {
+/**
+ * Collapsible menu container
+ * Holds navigation links, visible on desktop, collapsible on mobile
+ */
+.navbar-collapse {
   display: flex;
   flex-grow: 0;
   flex-basis: auto;
+  align-items: center;
 }
 
-/* Logo brand con icono */
+/**
+ * Brand/Logo container
+ * Contains the application logo and brand name
+ */
 .navbar-brand {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 8px 0px;
+  align-items: center;
+  padding: 8px 0;
   gap: 8px;
-  width: 169px;
-  height: 40px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
+/**
+ * Logo icon SVG
+ */
 .logo-icon {
   width: 28px;
   height: 28px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
   color: #ffffff;
 }
 
+/**
+ * Brand text label
+ */
 .navbar-brand span {
-  width: 133px;
-  height: 24px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
-  font-style: normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   color: #ffffff;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  white-space: nowrap;
 }
 
-/* Nav items */
+/**
+ * Navigation items container
+ */
 .navbar-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   gap: 8px;
-  width: 154px;
-  height: 40px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  list-style: none;
+  margin: 0;
 }
 
+/**
+ * Individual navigation item
+ */
 .nav-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 6px 16px;
-  width: 68px;
-  height: 40px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
 }
 
-.nav-item:first-child {
-  order: 0;
-}
-
-.nav-item:last-child {
-  order: 1;
-}
-
+/**
+ * Navigation link styling
+ */
 .navbar-nav .nav-item .nav-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: 28px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 28px;
   color: #ffffff;
   text-decoration: none;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  padding: 0;
-  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -136,12 +140,135 @@
   opacity: 1;
 }
 
-/* Toggler */
+/**
+ * Mobile menu toggle button (hamburger icon)
+ * Hidden by default on desktop, visible on mobile devices
+ */
 .navbar-toggler {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.1);
+  display: none;
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  color: #ffffff;
+  position: relative;
+  z-index: 10;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
+.navbar-toggler:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/**
+ * Hamburger icon (three horizontal lines)
+ */
 .navbar-toggler-icon {
-  filter: invert(1);
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+/**
+ * Desktop View (≥992px)
+ * Menu always visible, toggler hidden
+ */
+@media (min-width: 992px) {
+  .navbar-toggler {
+    display: none !important;
+  }
+
+  .navbar-collapse {
+    display: flex !important;
+  }
+}
+
+/**
+ * Mobile View (≤991.98px)
+ * Collapsible menu with hamburger toggle
+ */
+@media (max-width: 991.98px) {
+  .navbar {
+    min-height: auto;
+    padding: 12px 16px;
+  }
+
+  .navbar-container {
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggler {
+    display: block !important;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  .navbar-collapse {
+    display: none !important;
+    flex-basis: 100%;
+    flex-grow: 1;
+    width: 100%;
+    flex-direction: column;
+    order: 3;
+    margin-top: 0;
+  }
+
+  .navbar-collapse.show {
+    display: flex !important;
+    margin-top: 12px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: auto;
+    padding: 8px 16px;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 8px 0;
+  }
+}
+
+/**
+ * Small Mobile Devices (≤360px)
+ * Reduced font size and padding for better fit
+ */
+@media (max-width: 360px) {
+  .navbar-brand span {
+    font-size: 16px;
+  }
+
+  .navbar {
+    padding: 8px 12px;
+  }
 }
