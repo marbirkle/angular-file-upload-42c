@@ -8,9 +8,33 @@ import {
 import { Store } from '@ngrx/store';
 import { FilesActions } from './files.actions';
 import { selectStoredFiles } from './files.selectors';
+import { StoredFile } from '@models/file.models';
 import { map, withLatestFrom, tap } from 'rxjs/operators';
 
 const STORAGE_KEY = 'gyj.files.v1';
+
+/**
+ * Type guard to validate if an object is a valid StoredFile.
+ *
+ * @param item - The item to check
+ * @returns true if item is a valid StoredFile, false otherwise
+ */
+function isValidStoredFile(item: unknown): item is StoredFile {
+  return (
+    typeof item === 'object' &&
+    item !== null &&
+    'fileName' in item &&
+    'title' in item &&
+    'description' in item &&
+    'valid' in item &&
+    'content' in item &&
+    typeof (item as StoredFile).fileName === 'string' &&
+    typeof (item as StoredFile).title === 'string' &&
+    typeof (item as StoredFile).description === 'string' &&
+    typeof (item as StoredFile).valid === 'boolean' &&
+    typeof (item as StoredFile).content === 'string'
+  );
+}
 
 /**
  * NgRx effects for file management.
@@ -30,10 +54,14 @@ export class FilesEffects {
       map(() => {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return FilesActions.hydrateApply({ items: [] });
-          const parsed = JSON.parse(raw);
+          if (!raw) {
+            return FilesActions.hydrateApply({ items: [] });
+          }
+          const parsed: unknown = JSON.parse(raw);
+          const isValidArray =
+            Array.isArray(parsed) && parsed.every(isValidStoredFile);
           return FilesActions.hydrateApply({
-            items: Array.isArray(parsed) ? parsed : [],
+            items: isValidArray ? parsed : [],
           });
         } catch {
           return FilesActions.hydrateApply({ items: [] });

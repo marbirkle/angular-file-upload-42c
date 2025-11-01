@@ -1,7 +1,23 @@
+/* ==========================================================================
+   Welcome Page Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Ensures the component displays as a block element
+ */
 :host {
   display: block;
 }
 
+/* ==========================================================================
+   Page Layout Styles
+   ========================================================================== */
+
+/**
+ * Welcome wrapper container
+ * Centers the welcome card vertically and horizontally
+ */
 .welcome-wrapper {
   display: flex;
   justify-content: center;
@@ -10,7 +26,14 @@
   padding: 40px 16px;
 }
 
-/* card */
+/* ==========================================================================
+   Card Styles
+   ========================================================================== */
+
+/**
+ * Welcome card container
+ * Main content card with illustration and information
+ */
 .card {
   box-sizing: border-box;
   display: flex;
@@ -28,7 +51,10 @@
   flex-grow: 0;
 }
 
-/* card-img */
+/**
+ * Card illustration image
+ * Decorative SVG image at the top of the card
+ */
 .card-img {
   width: 350px;
   height: 337px;
@@ -37,7 +63,10 @@
   flex-grow: 0;
 }
 
-/* card-body */
+/**
+ * Card body section
+ * Contains title, description, counter, and action button
+ */
 .card-body {
   display: flex;
   flex-direction: column;
@@ -51,7 +80,14 @@
   flex-grow: 0;
 }
 
-/* Welcome! */
+/* ==========================================================================
+   Typography Styles
+   ========================================================================== */
+
+/**
+ * Welcome title
+ * Main heading "Welcome!"
+ */
 .card-title {
   width: 302px;
   height: 34px;
@@ -69,7 +105,10 @@
   flex-grow: 0;
 }
 
-/* texts */
+/**
+ * Text content container
+ * Wraps subtitle and counter
+ */
 .card-texts {
   display: flex;
   flex-direction: column;
@@ -83,7 +122,10 @@
   flex-grow: 0;
 }
 
-/* Upload JSON files in a quick and efficient way. */
+/**
+ * Welcome subtitle
+ * Descriptive text about file uploading
+ */
 .card-subtitle {
   width: 360px;
   height: 28px;
@@ -101,7 +143,10 @@
   flex-grow: 0;
 }
 
-/* 5 files uploaded already */
+/**
+ * File counter display
+ * Shows number of uploaded files with primary color
+ */
 .card-counter {
   width: 302px;
   height: 28px;
@@ -119,11 +164,22 @@
   flex-grow: 0;
 }
 
+/**
+ * Counter strong element
+ * Number display in counter
+ */
 .card-counter strong {
   font-weight: 400;
 }
 
-/* card-button */
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+/**
+ * Upload file button
+ * Primary action button to open upload modal
+ */
 .card-button {
   display: flex;
   flex-direction: row;
@@ -143,6 +199,10 @@
   margin-top: 24px;
 }
 
+/**
+ * Button text
+ * Label inside the upload button
+ */
 .card-button-text {
   margin: 0 auto;
   width: 84px;
@@ -160,10 +220,18 @@
   flex-grow: 0;
 }
 
+/**
+ * Button hover state
+ * Darker shade when hovering
+ */
 .card-button:hover {
   background: #2a6dd1;
 }
 
+/**
+ * Button active state
+ * Darkest shade when clicked
+ */
 .card-button:active {
   background: #1e5bb9;
 }

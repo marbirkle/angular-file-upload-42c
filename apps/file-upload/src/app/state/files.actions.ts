@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { StoredFile } from './files.models';
+import { StoredFile } from '@models/file.models';
 
 /**
  * NgRx actions for file management.

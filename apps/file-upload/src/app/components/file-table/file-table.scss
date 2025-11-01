@@ -1,15 +1,34 @@
+/* ==========================================================================
+   File Table Component Styles
+   ========================================================================== */
+
+/**
+ * Host container
+ * Ensures the component takes full width as a block element
+ */
 :host {
   display: block;
   width: 100%;
 }
 
-/* Override Bootstrap table styles to match Figma */
+/* ==========================================================================
+   Table Styles
+   ========================================================================== */
+
+/**
+ * Custom table styles
+ * Overrides Bootstrap default table styles to match design specifications
+ */
 .table-custom {
   width: 100% !important;
   border-collapse: collapse !important;
   border-spacing: 0 !important;
   border: none !important;
 
+  /**
+   * Table header section
+   * Contains column headers with distinct background
+   */
   thead {
     background: #f8f8f8 !important;
 
@@ -18,6 +37,10 @@
       border-bottom: 1px solid #dee2e6 !important;
     }
 
+    /**
+     * Header cell styling
+     * Bold, uppercase text with consistent padding
+     */
     th {
       padding: 8px 16px !important;
       height: 56px !important;
@@ -34,6 +57,10 @@
     }
   }
 
+  /**
+   * Table body section
+   * Contains data rows with hover and invalid states
+   */
   tbody {
     tr {
       height: 56px !important;
@@ -42,15 +69,27 @@
       background: #ffffff !important;
       transition: background-color 0.2s !important;
 
+      /**
+       * Invalid row state
+       * Highlighted background for invalid file entries
+       */
       &.invalid-row {
         background: #fff5f5 !important;
       }
 
+      /**
+       * Row hover state
+       * Subtle background change on hover for better UX
+       */
       &:hover {
         background: #f8fbff !important;
       }
     }
 
+    /**
+     * Table data cell styling
+     * Consistent typography and spacing for all cells
+     */
     td {
       padding: 8px 16px !important;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -66,7 +105,14 @@
   }
 }
 
-/* File column */
+/* ==========================================================================
+   File Column Styles
+   ========================================================================== */
+
+/**
+ * File name display container
+ * Flex layout for icon and filename alignment
+ */
 .file {
   display: flex;
   flex-direction: row;
@@ -74,12 +120,20 @@
   gap: 8px;
 }
 
+/**
+ * File icon styling
+ * Fixed size icon for uploaded files
+ */
 .icon-fileuploaded {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
+/**
+ * File name text
+ * Truncates long filenames with ellipsis
+ */
 .file-name {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
@@ -93,7 +147,14 @@
   white-space: nowrap;
 }
 
-/* Name and description */
+/* ==========================================================================
+   Text Content Styles
+   ========================================================================== */
+
+/**
+ * Name and description text
+ * Shared styling for truncation of long text content
+ */
 .name,
 .description {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -108,12 +169,23 @@
   white-space: nowrap;
 }
 
-/* Badge */
+/* ==========================================================================
+   Badge Styles
+   ========================================================================== */
+
+/**
+ * Badge container
+ * Flex container for validation status badges
+ */
 .badge-item {
   display: flex;
   justify-content: flex-start;
 }
 
+/**
+ * Base badge styling
+ * Shared styles for valid and invalid status badges
+ */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -132,17 +204,32 @@
   border: none;
 }
 
+/**
+ * Valid file badge
+ * Green background indicating successful validation
+ */
 .badge-valid {
   background: #28a745;
   width: 49px;
 }
 
+/**
+ * Invalid file badge
+ * Red background indicating validation failure
+ */
 .badge-invalid {
   background: #ce1b1b;
   width: 76px;
 }
 
-/* Remove button */
+/* ==========================================================================
+   Action Button Styles
+   ========================================================================== */
+
+/**
+ * Icon button for delete action
+ * Transparent background with hover opacity effect
+ */
 .btn-icon {
   display: flex;
   align-items: center;
@@ -164,12 +251,23 @@
   }
 }
 
+/**
+ * Remove icon styling
+ * Fixed size for delete icon
+ */
 .icon-remove {
   width: 16px;
   height: 16px;
 }
 
-/* Column widths */
+/* ==========================================================================
+   Column Width Definitions (Desktop Only)
+   ========================================================================== */
+
+/**
+ * Column width specifications for desktop view
+ * Ensures consistent table layout on larger screens
+ */
 .col-file {
   width: 24% !important;
 }
@@ -189,4 +287,173 @@
 .col-remove {
   width: 4% !important;
   padding: 8px 16px !important;
+}
+
+/* ==========================================================================
+   Responsive Design (Mobile View)
+   ========================================================================== */
+
+/**
+ * Mobile View (≤991.98px)
+ * Converts table to card-based layout for better mobile experience
+ * Desktop layout remains unchanged
+ */
+@media (max-width: 991.98px) {
+  /**
+   * Hide table header on mobile
+   * Labels will be shown inline with data
+   */
+  .table-custom thead {
+    display: none !important;
+  }
+
+  /**
+   * Convert table rows to card-like blocks
+   */
+  .table-custom tbody tr {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 16px !important;
+    padding: 16px !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    background: #ffffff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+
+    &.invalid-row {
+      background: #fff5f5 !important;
+      border-color: #f8d7da !important;
+    }
+
+    &:hover {
+      background: #ffffff !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+  }
+
+  /**
+   * Convert table cells to block elements
+   * Each cell becomes a row in the card layout
+   */
+  .table-custom tbody td {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 8px 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    height: auto !important;
+    min-height: 40px !important;
+
+    &:last-child {
+      border-bottom: none !important;
+      padding-top: 12px !important;
+      justify-content: flex-end !important;
+    }
+
+    /**
+     * Add labels before content using data attributes
+     */
+    &::before {
+      content: attr(data-label);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      color: #6c757d;
+      min-width: 100px;
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+  }
+
+  /**
+   * File column mobile layout
+   */
+  .col-file {
+    width: 100% !important;
+
+    &::before {
+      content: 'File:' !important;
+    }
+
+    .file {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  /**
+   * Name column mobile layout
+   */
+  .col-name {
+    width: 100% !important;
+
+    &::before {
+      content: 'Name:' !important;
+    }
+
+    .name {
+      flex: 1;
+      min-width: 0;
+      text-align: right;
+    }
+  }
+
+  /**
+   * Description column mobile layout
+   */
+  .col-description {
+    width: 100% !important;
+
+    &::before {
+      content: 'Description:' !important;
+    }
+
+    .description {
+      flex: 1;
+      min-width: 0;
+      text-align: right;
+      word-break: break-word;
+      white-space: normal;
+    }
+  }
+
+  /**
+   * Valid column mobile layout
+   */
+  .col-valid {
+    width: 100% !important;
+
+    &::before {
+      content: 'Status:' !important;
+    }
+
+    .badge-item {
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+
+  /**
+   * Remove column mobile layout
+   */
+  .col-remove {
+    width: 100% !important;
+    padding: 0 !important;
+
+    &::before {
+      display: none !important;
+    }
+
+    .btn-icon {
+      justify-content: center;
+      width: 100%;
+      padding: 8px 0;
+    }
+  }
 }
