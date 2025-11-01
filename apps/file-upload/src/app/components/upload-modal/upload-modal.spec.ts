@@ -15,6 +15,8 @@ import { provideStore } from '@ngrx/store';
 import { filesReducer } from '@state/files.reducer';
 import { UploadProgress } from '@models/upload.models';
 import { of, throwError } from 'rxjs';
+import { StoredFile } from '@models/file.models';
+import { FilesActions } from '@state/files.actions';
 
 describe('UploadModal Component', () => {
   let component: UploadModal;
@@ -128,6 +130,38 @@ describe('UploadModal Component', () => {
       component.submit();
 
       expect(spyUpload).not.toHaveBeenCalled();
+    });
+
+    it('should prevent uploading duplicate file name', () => {
+      const file = new File(['{}'], 'test.json', { type: 'application/json' });
+      const existingFile: StoredFile = {
+        fileName: 'test.json',
+        title: 'Existing File',
+        description: 'Test description',
+        valid: true,
+        content: '{}',
+      };
+
+      // Add existing file to store
+      store.dispatch(FilesActions.addFile({ item: existingFile }));
+
+      jest
+        .spyOn(mockValidationService, 'isValidJsonFile')
+        .mockReturnValue(true);
+      const spyUpload = jest.spyOn(mockFileUploadService, 'uploadFile');
+      const spyDispatch = jest.spyOn(store, 'dispatch');
+
+      component.form.patchValue({
+        file,
+        name: '42c-marbirkle-test',
+        description: 'Test file',
+      });
+      component.submit();
+
+      expect(spyUpload).not.toHaveBeenCalled();
+      expect(spyDispatch).not.toHaveBeenCalled();
+      expect(component.errorMessage).toContain('already exists');
+      expect(component.form.get('file')?.errors?.['duplicate']).toBe(true);
     });
 
     it('should upload file successfully and dispatch action to store', async () => {
